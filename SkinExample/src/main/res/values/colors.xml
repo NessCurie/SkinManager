@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#7189ff</color>
+    <color name="colorPrimaryLight">#f04565B2</color>
+    <color name="colorPrimaryDark">#807189ff</color>
+
+    <color name="colorText">#e5e5e5</color>
+    <color name="colorTextLight">#ffffff</color>
+    <color name="colorTextDim">#cccccc</color>
+    <color name="colorTextDark">#99e5e5e5</color>
+
+    <color name="colorBackground">#7189ff</color>
+    <color name="colorBackgroundLight">#f04565B2</color>
+    <color name="colorBackgroundDark">#807189ff</color>
+
+    <color name="colorDialogBackground">#FFFFFF</color>
+</resources>

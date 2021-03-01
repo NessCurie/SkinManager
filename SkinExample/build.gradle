@@ -1,0 +1,50 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    defaultConfig {
+        applicationId "com.github.skin"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 1
+        versionName "1.0.0.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    android.applicationVariants.all { variant ->
+        if ("release" == variant.buildType.name) {
+            assembleRelease.doLast {
+                variant.outputs.all { output ->
+                    file(output.outputFile.parent).eachFileRecurse(groovy.io.FileType.FILES) { file ->
+                        if (!file.name.endsWith('.apk')) {
+                            delete file
+                        }
+                    }
+                    if (org.gradle.internal.os.OperatingSystem.current().isLinux()) {
+                        copy {
+                            from output.outputFile.parent
+                            into file(sign.xxxx)
+                            rename { filename ->
+                                "skin.apk"
+                            }
+                        }
+                    } else {
+                        copy {
+                            from output.outputFile.parent
+                            //into output.outputFile.parentFile.parent
+                            into file(sign.windowsPath)
+                            rename { filename ->
+                                "skin.apk"
+                            }
+                        }
+                    }
+                    delete output.outputFile.parent
+                }
+            }
+        }
+    }
+}
